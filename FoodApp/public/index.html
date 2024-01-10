@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up</title>
+    <link rel="stylesheet" type="text/css" href="../css/signup.css">
+</head>
+<body>
+    <h1 class="center-text">Sign-Up</h1>
+    <form class="signup-form">
+        <input type="text" name="username" placeholder="Username">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="confirmPassword" placeholder="Confirm Password">
+        <button type="submit">Sign-Up</button>
+    </form>
+    <h3 class="center-text">Already have an account? <a href="/user/login">Login</a></h3>
+
+    <!-- CDN LINK FOR AXIOS -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        let btn = document.querySelector('button');
+        btn.addEventListener('click', async function (e) {
+            e.preventDefault();
+
+            let email = document.querySelector('input[name="email"]').value;
+            let password = document.querySelector('input[name="password"]').value;
+            // let confirmPassword = document.querySelector('input[name="confirmPassword"]').value;
+            let username = document.querySelector('input[name="username"]').value;
+
+            let resp = await axios.post('/user/signup', { email, password , username });
+            
+            console.log('resp-->', resp);
+        })
+    </script>
+</body>
+</html>
