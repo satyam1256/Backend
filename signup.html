@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <title>Signup</title>
+    <link rel="stylesheet" type="text/css" href="css/signup.css">
 </head>
 <body>
-    <h1 class="center-text">Login </h1>
-    <form class="login-form" id="loginForm">
+    <h1 class="center-text">Signup </h1>
+    <form class="signup-form" id="signupForm">
+        <input type="text" name="name" id="name" placeholder="name">
         <input type="email" name="email" id="email" placeholder="Email">
         <input type="password" name="password" id="password" placeholder="Password">
-        <button type="submit" onclick="submitForm(event)">Login</button>
+        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="confirmPassword">
+        <button type="submit" onclick="submitForm(event)">Signup</button>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -20,11 +22,13 @@
             event.preventDefault(); // Prevent the default form submission
 
             // Get form data
+            const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
+            const confirmPassword= document.getElementById('confirmPassword').value;
 
             // Make Axios request
-            axios.post('http://localhost:3001/user/login', { email, password })
+            axios.post('http://localhost:3001/user/signup', { name, email, password,confirmPassword })
                 .then(response => {
                     // Handle successful response
                     console.log(response.data);
