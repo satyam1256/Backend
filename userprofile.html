@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Landing Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 16px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        .showPage {
+            background: url(../css/images/barcelona.jpg) center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+
+        .showPage h1 {
+            color: #fff;
+            font-size: 3.5rem;
+        }
+
+        .showPage p {
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .btn-1 {
+            background: #e74c3c;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-size: .8rem;
+            margin-top: 20px;
+            transition: all .5s ease-in-out;
+        }
+
+        .btn-1:hover {
+            background: #c0392b;
+        }
+
+        #section-1 {
+            text-align: center;
+            padding: 40px;
+        }
+
+        #section-1 h1 {
+            margin-bottom: 20px;
+            color: #ecf0f1;
+        }
+
+        #section-2 {
+            margin-bottom: 20px;
+        }
+
+        #section-2 h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ecf0f1;
+        }
+
+        .flex-columns {
+            display: flex;
+            padding: 20px;
+        }
+
+        .flex-columns p {
+            flex: 0 0 30%;
+            color: #ecf0f1;
+        }
+
+        footer {
+            min-height: 150px;
+            background: #34495e;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+
+<header class="showPage">
+    <h1>Barcelona Landing Page</h1>
+    <p>All about this beautiful country</p>
+    <button type="button" class="btn-1">Read About</button>
+</header>
+
+<section id="section-1">
+    <h1>About Barcelona</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+</section>
+
+<section id="section-2">
+    <h1>Some Cool Stories</h1>
+    <div class="flex-columns">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+    </div>
+</section>
+
+<footer>
+    <p>some cool footer 2017 &copy;</p>
+</footer>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Make Axios request
+        axios.get('http://localhost:3001/user/userprofile')
+            .then(response => {
+                message:"Response Successful"
+                // Handle successful response
+                // console.log(response.data);
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error in userprofile page:', error);
+            });
+            
+    }
+</script>
+
+
+
+
+</body>
+</html>

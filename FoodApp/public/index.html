@@ -3,38 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign-Up</title>
-    <link rel="stylesheet" type="text/css" href="../css/signup.css">
+    <title>Signup</title>
+    <link rel="stylesheet" type="text/css" href="css/signup.css">
 </head>
 <body>
-    <h1 class="center-text">Sign-Up</h1>
-    <form class="signup-form">
-        <input type="text" name="username" placeholder="Username">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <input type="password" name="confirmPassword" placeholder="Confirm Password">
-        <button type="submit">Sign-Up</button>
+    <h1 class="center-text">Signup </h1>
+    <form class="signup-form" id="signupForm">
+        <input type="text" name="Name" id="Name" placeholder="Name">
+        <input type="email" name="email" id="email" placeholder="Email">
+        <input type="password" name="password" id="password" placeholder="Password">
+        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="confirmPassword">
+        <button type="submit" onclick="submitForm(event)">Signup</button>
+        <h3>Already have an account? <a href="http://localhost:3001/user/login">Login</a></h3>
     </form>
-    <h3 class="center-text">Already have an account? <a href="/user/login">Login</a></h3>
 
-    <!-- CDN LINK FOR AXIOS -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
     <script>
-        let btn = document.querySelector('button');
-        btn.addEventListener('click', async function (e) {
-            e.preventDefault();
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the default form submission
 
-            let email = document.querySelector('input[name="email"]').value;
-            let password = document.querySelector('input[name="password"]').value;
-            // let confirmPassword = document.querySelector('input[name="confirmPassword"]').value;
-            let username = document.querySelector('input[name="username"]').value;
+            // Get form data
+            const Name = document.getElementById('Name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword= document.getElementById('confirmPassword').value;
 
-            let resp = await axios.post('/user/signup', { email, password , username });
-            
-            console.log('resp-->', resp);
-        })
+            // Make Axios request
+            axios.post('http://localhost:3001/user/signup', { Name, email, password,confirmPassword })
+                .then(response => {
+                    // Handle successful response
+                    window.location.href = 'http://localhost:3001/user/userprofile'
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error('Error submitting form:', error);
+                });
+                
+        }
     </script>
 </body>
 </html>

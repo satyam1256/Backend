@@ -104,6 +104,13 @@ module.exports.deleteUser = async function deleteUser(req,res){
 };
 
 module.exports.getAllUser = async function getAllUser(req,res){
+    console.log(req.roles);
+    if(req.roles != 'admin'){
+        return res.status(401).json({
+            message:"You are not authorised",
+            statusCode:401
+        });
+    }
     let user = await userModel.find();
     return res.json({
         message:"got all the users",

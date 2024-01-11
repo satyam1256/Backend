@@ -2,22 +2,23 @@ const express = require('express');   // this is used for creating the router
 const userModel = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const JWT_KEY =process.env.JWT_KEY;
-
-
 module.exports.signup = async function signup(req,res){
     // username , password , email 
     // if already exist the email then send asking for login
     // if new user then add the details in the database
     // res.send(req.body);
+    res.redirect("/login")
     try{
         let dataobj = req.body;
         console.log(dataobj.email);
         let user1 = await userModel.create(dataobj);
+       
         if(user1){
             res.json({
                 message : "User Signed Up successfully",
                 data:user1
             });
+            res.redirect('/user/userprofile');
             
         }
         else{
